@@ -159,7 +159,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bLp-MU-9Cd">
-                                                    <rect key="frame" x="106.5" y="129" width="54" height="56"/>
+                                                    <rect key="frame" x="106.5" y="141" width="54" height="44"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="retweet-icon" title=""/>
                                                     <connections>
@@ -196,7 +196,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="ahZ-Bb-dGB" secondAttribute="trailing" constant="15" id="jWN-9v-6h6"/>
                                                 <constraint firstItem="n3S-T7-M28" firstAttribute="leading" secondItem="R4B-LG-pOr" secondAttribute="trailing" constant="10" id="leI-Z5-M2w"/>
                                                 <constraint firstItem="lOV-0V-EqH" firstAttribute="leading" secondItem="sw3-rY-817" secondAttribute="trailing" constant="8" id="oP0-7T-iSQ"/>
-                                                <constraint firstItem="bLp-MU-9Cd" firstAttribute="top" secondItem="Ehz-hw-rJ2" secondAttribute="top" constant="95" id="oVD-Hv-IoK"/>
+                                                <constraint firstItem="bLp-MU-9Cd" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Ehz-hw-rJ2" secondAttribute="top" constant="90" id="oVD-Hv-IoK"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="ewC-2e-Z7h" secondAttribute="bottom" constant="5" id="oig-W1-iKI"/>
                                                 <constraint firstItem="MVS-ME-g5f" firstAttribute="leading" secondItem="lOV-0V-EqH" secondAttribute="trailing" constant="8" symbolic="YES" id="uG4-Sv-3bD"/>
                                                 <constraint firstItem="ume-ja-Bst" firstAttribute="leading" secondItem="pud-Jo-AMQ" secondAttribute="trailing" constant="20" id="uad-AC-kxb"/>

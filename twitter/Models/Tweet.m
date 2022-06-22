@@ -7,7 +7,7 @@
 //
 
 #import "Tweet.h"
-
+#import "DateTools.h"
 
 @implementation Tweet
 
@@ -41,15 +41,14 @@
         // Configure the input format to parse the date string
         formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
         
-        // Convert String to Date
+//        // Convert String to Date
+//        NSDate *date = [formatter dateFromString:createdAtOriginalString];
+//
+//        // Configure output format
+//        formatter.dateStyle = NSDateFormatterShortStyle;
+//        formatter.timeStyle = NSDateFormatterNoStyle;
         NSDate *date = [formatter dateFromString:createdAtOriginalString];
-        
-        // Configure output format
-        formatter.dateStyle = NSDateFormatterShortStyle;
-        formatter.timeStyle = NSDateFormatterNoStyle;
-        
-        // Convert Date to String
-        self.createdAtString = [formatter stringFromDate:date];
+        self.createdAtString = [date shortTimeAgoSinceNow];
     }
     return self;
 }
