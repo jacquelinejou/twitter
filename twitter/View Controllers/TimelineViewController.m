@@ -13,8 +13,9 @@
 #import "Tweet.h"
 #import "TweetCell.h"
 #import "UIImageView+AFNetworking.h"
+#import "ComposeViewController.h"
 
-@interface TimelineViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface TimelineViewController () <ComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *arrayOfTweets;
@@ -54,6 +55,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell" forIndexPath:indexPath];
     Tweet *tweet = self.arrayOfTweets[indexPath.row];
+    cell.tweet = tweet;
     cell.authorLabel.text = tweet.user.name;
     cell.tweetLabel.text = tweet.text;
     cell.numReplies.text = [NSString stringWithFormat:@"%i", tweet.replyCount];
@@ -61,21 +63,21 @@
     cell.numLikes.text = [NSString stringWithFormat:@"%i", tweet.favoriteCount];
     cell.username.text = tweet.user.screenName;
     cell.date.text = tweet.createdAtString;
-    UIImage *image=[[UIImage alloc]init];
+    UIImage *image = [[UIImage alloc] init];
     // retweet icon setup
     if (tweet.retweeted) {
         image = [UIImage imageNamed:@"retweet-icon-green.png"];
     } else {
         image = [UIImage imageNamed:@"retweet-icon.png"];
     }
-    cell.retweetImage.image = image;
+    [cell.retweetImage setImage:image forState:UIControlStateNormal];
     // like icon setup
     if (tweet.favorited) {
         image = [UIImage imageNamed:@"favor-icon-red.png"];
     } else {
         image = [UIImage imageNamed:@"favor-icon.png"];
     }
-    cell.likeImage.image = image;
+    [cell.likeImage setImage:image forState:UIControlStateNormal];
     // message icon setup
     image = [UIImage imageNamed:@"reply-icon.png"];
     cell.replyImage.image = image;
@@ -114,15 +116,16 @@
     }];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    UINavigationController *navigationController = [segue destinationViewController];
+    ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
+    composeController.delegate = self;
 }
-*/
 
+
+- (void)didTweet:(nonnull Tweet *)tweet {
+    [self.arrayOfTweets insertObject:tweet atIndex:0];
+    [self.tableView reloadData];
+}
 
 @end
