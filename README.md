@@ -52,7 +52,8 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough Part 1' width='' alt='Video Walkthrough' />
+<img src='[http://i.imgur.com/link/to/your/gif/file.gif](https://github.com/jacquelinejou/twitter/blob/main/ezgif.com-gif-maker-2.gif)' title='Video Walkthrough Part 1' width='' alt='Video Walkthrough' />
+<img src='[http://i.imgur.com/link/to/your/gif/file.gif](https://github.com/jacquelinejou/twitter/blob/main/ezgif.com-gif-maker-3.gif)' title='Video Walkthrough Part 2' width='' alt='Video Walkthrough' />
 
 GIF created with [Kap](https://getkap.co/).
 
