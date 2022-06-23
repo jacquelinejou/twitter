@@ -7,8 +7,24 @@
 //
 
 #import "TweetDetailsViewController.h"
+#import "DateTools.h"
+#import "APIManager.h"
 
 @interface TweetDetailsViewController ()
+@property (strong, nonatomic) IBOutlet UIView *tweetDetailsView;
+@property (weak, nonatomic) IBOutlet UIImageView *profileImage;
+@property (weak, nonatomic) IBOutlet UILabel *userLabel;
+@property (weak, nonatomic) IBOutlet UILabel *username;
+@property (weak, nonatomic) IBOutlet UIImageView *verifiedImage;
+@property (weak, nonatomic) IBOutlet UILabel *tweetText;
+@property (weak, nonatomic) IBOutlet UILabel *numRetweets;
+@property (weak, nonatomic) IBOutlet UILabel *numQuoteTweets;
+@property (weak, nonatomic) IBOutlet UILabel *numLikes;
+@property (weak, nonatomic) IBOutlet UIButton *didReply;
+@property (weak, nonatomic) IBOutlet UIButton *didRetweet;
+@property (weak, nonatomic) IBOutlet UIButton *didLike;
+@property (weak, nonatomic) IBOutlet UIButton *didShare;
+@property (weak, nonatomic) IBOutlet UILabel *date;
 
 @end
 
@@ -16,17 +32,99 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    NSLog(@"%@", self.detailTweet);
+    // profile picture setup
+    NSString *URLString = self.detailTweet.user.profilePicture;
+    NSURL *url = [NSURL URLWithString:URLString];
+    NSData *urlData = [NSData dataWithContentsOfURL:url];
+    self.profileImage.image = [UIImage imageWithData:urlData];
+    self.userLabel.text = self.detailTweet.user.name;
+    self.username.text = self.detailTweet.user.screenName;
+    UIImage *image = [[UIImage alloc] init];
+    // setup verified icon
+    if (self.detailTweet.user.verified) {
+        image = [UIImage imageNamed:@"selected-icon.png"];
+        self.verifiedImage.image = image;
+    }
+    self.tweetText.text = self.detailTweet.text;
+    self.numRetweets.text = [NSString stringWithFormat:@"%i", self.detailTweet.retweetCount];
+    self.numLikes.text = [NSString stringWithFormat:@"%i", self.detailTweet.favoriteCount];
+    // setup retweeted icon
+    if (self.detailTweet.retweeted) {
+        image = [UIImage imageNamed:@"retweet-icon-green.png"];
+    } else {
+        image = [UIImage imageNamed:@"retweet-icon.png"];
+    }
+    [self.didRetweet setImage:image forState:UIControlStateNormal];
+    // like icon setup
+    if (self.detailTweet.favorited) {
+        image = [UIImage imageNamed:@"favor-icon-red.png"];
+    } else {
+        image = [UIImage imageNamed:@"favor-icon.png"];
+    }
+    [self.didLike setImage:image forState:UIControlStateNormal];
+    // message icon setup
+    image = [UIImage imageNamed:@"reply-icon.png"];
+    [self.didReply setImage:image forState:UIControlStateNormal];
+    image = [UIImage imageNamed:@"square.and.arrow.up.png"];
+    [self.didShare setImage:image forState:UIControlStateNormal];
+    // setup date in time, date format
+    self.date.text = self.detailTweet.createdAtString;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)didTapRetweet:(id)sender {
+    if (!self.detailTweet.retweeted) {
+        [[APIManager shared] retweet:self.detailTweet completion:^(Tweet *tweet, NSError *error) {
+             self.detailTweet.retweeted = YES;
+             self.detailTweet.retweetCount += 1;
+             // retweet icon setup
+             UIImage *image = [[UIImage alloc] init];
+             image = [UIImage imageNamed:@"retweet-icon-green.png"];
+             [self.didRetweet setImage:image forState:UIControlStateNormal];
+             [self refreshData];
+         }];
+    } else {
+        [[APIManager shared] unretweet:self.detailTweet completion:^(Tweet *tweet, NSError *error) {
+            self.detailTweet.retweeted = NO;
+            self.detailTweet.retweetCount -= 1;
+            // retweet icon setup
+            UIImage *image = [[UIImage alloc] init];
+            image = [UIImage imageNamed:@"retweet-icon.png"];
+            [self.didRetweet setImage:image forState:UIControlStateNormal];
+            [self refreshData];
+        }];
+    }
 }
-*/
+
+- (IBAction)didTapFavorite:(id)sender {
+    if (!self.detailTweet.favorited) {
+        [[APIManager shared] favorite:self.detailTweet completion:^(Tweet *tweet, NSError *error) {
+             self.detailTweet.favorited = YES;
+             self.detailTweet.favoriteCount += 1;
+             // like icon setup
+             UIImage *image = [[UIImage alloc] init];
+             image = [UIImage imageNamed:@"favor-icon-red.png"];
+             [self.didLike setImage:image forState:UIControlStateNormal];
+             [self refreshData];
+         }];
+    } else {
+        [[APIManager shared] unfavorite:self.detailTweet completion:^(Tweet *tweet, NSError *error) {
+            self.detailTweet.favorited = NO;
+            self.detailTweet.favoriteCount -= 1;
+            // like icon setup
+            UIImage *image = [[UIImage alloc] init];
+            image = [UIImage imageNamed:@"favor-icon.png"];
+            [self.didLike setImage:image forState:UIControlStateNormal];
+            [self refreshData];
+        }];
+    }
+}
+
+-(void)refreshData {
+    NSString *likes = [NSString stringWithFormat:@"%d", self.detailTweet.favoriteCount];
+    self.numLikes.text = likes;
+    NSString *retweets = [NSString stringWithFormat:@"%d", self.detailTweet.retweetCount];
+    self.numRetweets.text = retweets;
+}
 
 @end
