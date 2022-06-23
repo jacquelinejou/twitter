@@ -58,7 +58,7 @@
     Tweet *tweet = self.arrayOfTweets[indexPath.row];
     cell.tweet = tweet;
     cell.authorLabel.text = tweet.user.name;
-    cell.tweetLabel.text = tweet.text;
+    cell.tweetText.text = tweet.text;
     cell.numReplies.text = [NSString stringWithFormat:@"%i", tweet.replyCount];
     cell.numRetweets.text = [NSString stringWithFormat:@"%i", tweet.retweetCount];
     cell.numLikes.text = [NSString stringWithFormat:@"%i", tweet.favoriteCount];
@@ -96,6 +96,7 @@
     NSData *urlData = [NSData dataWithContentsOfURL:url];
     cell.profileImage.image = [UIImage imageWithData:urlData];
     
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 

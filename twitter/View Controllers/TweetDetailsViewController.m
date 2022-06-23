@@ -69,7 +69,23 @@
     image = [UIImage imageNamed:@"square.and.arrow.up.png"];
     [self.didShare setImage:image forState:UIControlStateNormal];
     // setup date in time, date format
-    self.date.text = self.detailTweet.createdAtString;
+    NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    timeFormatter.dateFormat = @"HH:mm:ss E MMM d Z y";
+    dateFormatter.dateFormat = @"HH:mm:ss E MMM d Z y";
+
+    // Configure output format
+    timeFormatter.dateStyle = NSDateFormatterNoStyle;
+    timeFormatter.timeStyle = NSDateFormatterShortStyle;
+    dateFormatter.dateStyle = NSDateFormatterShortStyle;
+    dateFormatter.timeStyle = NSDateFormatterNoStyle;
+    
+    NSString *time = [timeFormatter stringFromDate:self.detailTweet.originalDate];
+    NSString *day = [dateFormatter stringFromDate:self.detailTweet.originalDate];
+    NSString *space = @" • ";
+    // Convert Date to String
+    NSString *total = [time stringByAppendingString:space];
+    self.date.text = [total stringByAppendingString:day];
 }
 
 - (IBAction)didTapRetweet:(id)sender {
