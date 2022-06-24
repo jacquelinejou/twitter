@@ -152,19 +152,10 @@
                                                         <action selector="didTapFavorite:" destination="4xX-Cu-XVj" eventType="touchUpInside" id="eQV-cm-Bw1"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bLp-MU-9Cd">
-                                                    <rect key="frame" x="106.5" y="130" width="54" height="55"/>
-                                                    <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" image="retweet-icon" title=""/>
-                                                    <connections>
-                                                        <action selector="didTapRetweet:" destination="4xX-Cu-XVj" eventType="touchUpInside" id="std-I0-Kqw"/>
-                                                    </connections>
-                                                </button>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="EJ1-bQ-yRf">
-                                                    <rect key="frame" x="82" y="34" width="272" height="95"/>
+                                                    <rect key="frame" x="82" y="107" width="272" height="33"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="95" id="5gx-Y1-d2M"/>
                                                         <constraint firstAttribute="width" constant="272" id="pcs-82-EaG"/>
                                                     </constraints>
                                                     <color key="textColor" systemColor="labelColor"/>
@@ -172,6 +163,20 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                                 </textView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bLp-MU-9Cd">
+                                                    <rect key="frame" x="106.5" y="141" width="54" height="44"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" image="retweet-icon" title=""/>
+                                                    <connections>
+                                                        <action selector="didTapRetweet:" destination="4xX-Cu-XVj" eventType="touchUpInside" id="std-I0-Kqw"/>
+                                                    </connections>
+                                                </button>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1FR-ap-fxG">
+                                                    <rect key="frame" x="82" y="34" width="272" height="73"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="272" id="kNk-lO-q9a"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="ume-ja-Bst" firstAttribute="top" secondItem="n3S-T7-M28" secondAttribute="top" id="0ee-lZ-uAk"/>
@@ -189,8 +194,8 @@
                                                 <constraint firstItem="ahZ-Bb-dGB" firstAttribute="top" secondItem="MVS-ME-g5f" secondAttribute="top" id="S30-b9-Dyx"/>
                                                 <constraint firstItem="R4B-LG-pOr" firstAttribute="top" secondItem="EF3-tJ-qVL" secondAttribute="top" id="Tn3-l9-n2Z"/>
                                                 <constraint firstItem="EJ1-bQ-yRf" firstAttribute="leading" secondItem="sw3-rY-817" secondAttribute="trailing" constant="8" id="XKC-wx-Xw6"/>
-                                                <constraint firstItem="EJ1-bQ-yRf" firstAttribute="top" secondItem="lOV-0V-EqH" secondAttribute="bottom" constant="5" id="YsO-9l-fXX"/>
                                                 <constraint firstItem="bLp-MU-9Cd" firstAttribute="top" secondItem="EJ1-bQ-yRf" secondAttribute="bottom" constant="1" id="ZOh-At-Ale"/>
+                                                <constraint firstItem="EJ1-bQ-yRf" firstAttribute="top" secondItem="1FR-ap-fxG" secondAttribute="bottom" id="atM-Zy-6GH"/>
                                                 <constraint firstItem="R4B-LG-pOr" firstAttribute="leading" secondItem="bLp-MU-9Cd" secondAttribute="trailing" constant="5" id="auM-3s-9WB"/>
                                                 <constraint firstItem="ume-ja-Bst" firstAttribute="top" secondItem="EF3-tJ-qVL" secondAttribute="top" id="clO-u0-co3"/>
                                                 <constraint firstItem="ewC-2e-Z7h" firstAttribute="top" secondItem="EF3-tJ-qVL" secondAttribute="top" id="dG0-AY-PWi"/>
@@ -203,9 +208,11 @@
                                                 <constraint firstItem="n3S-T7-M28" firstAttribute="leading" secondItem="R4B-LG-pOr" secondAttribute="trailing" constant="10" id="leI-Z5-M2w"/>
                                                 <constraint firstItem="lOV-0V-EqH" firstAttribute="leading" secondItem="sw3-rY-817" secondAttribute="trailing" constant="8" id="oP0-7T-iSQ"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="ewC-2e-Z7h" secondAttribute="bottom" constant="5" id="oig-W1-iKI"/>
+                                                <constraint firstItem="1FR-ap-fxG" firstAttribute="leading" secondItem="sw3-rY-817" secondAttribute="trailing" constant="8" id="uEe-k8-qXY"/>
                                                 <constraint firstItem="MVS-ME-g5f" firstAttribute="leading" secondItem="lOV-0V-EqH" secondAttribute="trailing" constant="8" symbolic="YES" id="uG4-Sv-3bD"/>
                                                 <constraint firstItem="ume-ja-Bst" firstAttribute="leading" secondItem="pud-Jo-AMQ" secondAttribute="trailing" constant="20" id="uad-AC-kxb"/>
                                                 <constraint firstItem="t3f-qG-VHD" firstAttribute="top" secondItem="MVS-ME-g5f" secondAttribute="top" id="ud4-KN-Sk1"/>
+                                                <constraint firstItem="1FR-ap-fxG" firstAttribute="top" secondItem="lOV-0V-EqH" secondAttribute="bottom" constant="5" id="vif-NW-F1k"/>
                                                 <constraint firstItem="MVS-ME-g5f" firstAttribute="leading" secondItem="lOV-0V-EqH" secondAttribute="trailing" constant="8" symbolic="YES" id="wVE-l9-Tkf"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -220,6 +227,7 @@
                                             <outlet property="profileImage" destination="sw3-rY-817" id="BBv-88-5gi"/>
                                             <outlet property="replyImage" destination="EF3-tJ-qVL" id="Rrb-dw-vLG"/>
                                             <outlet property="retweetImage" destination="bLp-MU-9Cd" id="jgk-Ig-9H7"/>
+                                            <outlet property="tweetImage" destination="1FR-ap-fxG" id="W58-mQ-p9X"/>
                                             <outlet property="tweetText" destination="EJ1-bQ-yRf" id="zp0-oJ-KVg"/>
                                             <outlet property="username" destination="t3f-qG-VHD" id="aiF-4G-LKJ"/>
                                             <outlet property="verifiedImage" destination="MVS-ME-g5f" id="GRc-DG-GJe"/>

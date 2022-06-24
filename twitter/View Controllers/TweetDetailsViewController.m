@@ -32,7 +32,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"%@", self.detailTweet);
     // profile picture setup
     NSString *URLString = self.detailTweet.user.profilePicture;
     NSURL *url = [NSURL URLWithString:URLString];
