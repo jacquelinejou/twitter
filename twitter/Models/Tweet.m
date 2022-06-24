@@ -7,7 +7,6 @@
 //
 
 #import "Tweet.h"
-#import "DateTools.h"
 
 @implementation Tweet
 
@@ -33,13 +32,14 @@
         // initialize user
         NSDictionary *user = dictionary[@"user"];
         self.user = [[User alloc] initWithDictionary:user];
+        self.user.verified = [user[@"verified"] boolValue];
 
         // Format createdAt date string
-        NSString *createdAtOriginalString = dictionary[@"created_at"];
+        self.originalDate = dictionary[@"created_at"];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
         // Configure the input format to parse the date string
-        NSDate *date = [formatter dateFromString:createdAtOriginalString];
+        NSDate *date = [formatter dateFromString:self.originalDate];
         self.createdAtString = [date shortTimeAgoSinceNow];
     }
     return self;

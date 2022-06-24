@@ -14,6 +14,7 @@
 #import "TweetCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "ComposeViewController.h"
+#import "TweetDetailsViewController.h"
 
 @interface TimelineViewController () <ComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>;
 
@@ -87,6 +88,7 @@
     if (tweet.verified) {
         image = [UIImage imageNamed:@"selected-icon.png"];
         cell.verifiedImage.image = image;
+        cell.tweet.user.verified = tweet.verified;
     }
     // profile picture setup
     NSString *URLString = tweet.user.profilePicture;
@@ -117,9 +119,16 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    UINavigationController *navigationController = [segue destinationViewController];
-    ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
-    composeController.delegate = self;
+    if ([segue.identifier isEqualToString:@"ComposeView"]) {
+        UINavigationController *navigationController = [segue destinationViewController];
+        ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
+        composeController.delegate = self;
+    } else if ([segue.identifier isEqualToString:@"TweetDetails"]) {
+        NSIndexPath *myIndexPath = [self.tableView indexPathForCell:sender];
+        Tweet *dataToPass = self.arrayOfTweets[myIndexPath.row];
+        TweetDetailsViewController *detailVC = [segue destinationViewController];
+        detailVC.detailTweet = dataToPass;
+    }
 }
 
 
