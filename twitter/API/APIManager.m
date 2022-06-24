@@ -66,6 +66,19 @@ static NSString * const baseURLString = @"https://api.twitter.com";
     }];
 }
 
+- (void)reloadHomeTimeline:(NSNumber *)numReloads completion:(void(^)(NSArray *tweets, NSError *error))completion {
+    NSDictionary *parameters = @{@"count": numReloads};
+    [self GET:@"1.1/statuses/home_timeline.json"
+       parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSArray *  _Nullable tweetDictionaries) {
+           // Success
+           NSMutableArray *tweets = [Tweet tweetsWithArray:tweetDictionaries];
+           completion(tweets, nil);
+       } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+           // There was a problem
+           completion(nil, error);
+    }];
+}
+
 - (void)postStatusWithText:(NSString *)text completion:(void (^)(Tweet *tweet, NSError *error))completion {
     NSString *urlString = @"1.1/statuses/update.json";
     NSDictionary *parameters = @{@"status": text};
