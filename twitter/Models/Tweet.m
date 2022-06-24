@@ -35,12 +35,16 @@
         self.user.verified = [user[@"verified"] boolValue];
 
         // Format createdAt date string
-        self.originalDate = dictionary[@"created_at"];
+        NSString *createdAtOriginalString = dictionary[@"created_at"];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
         // Configure the input format to parse the date string
-        NSDate *date = [formatter dateFromString:self.originalDate];
-        self.createdAtString = [date shortTimeAgoSinceNow];
+        self.originalDate = [formatter dateFromString:createdAtOriginalString];
+        self.createdAtString = [self.originalDate shortTimeAgoSinceNow];
+        for (NSString * url in dictionary[@"entities"][@"urls"]) {
+            
+        }
+        self.embeddedURL = dictionary[@"entities"][@"urls"];
     }
     return self;
 }
