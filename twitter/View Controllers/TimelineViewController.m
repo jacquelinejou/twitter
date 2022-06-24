@@ -73,6 +73,10 @@
     cell.tweet = tweet;
     cell.authorLabel.text = tweet.user.name;
     cell.tweetText.text = tweet.text;
+    if (cell.tweet.mediaURL) {
+        NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: cell.tweet.mediaURL]];
+        cell.tweetImage.image = [UIImage imageWithData: imageData];
+    }
     cell.numReplies.text = [NSString stringWithFormat:@"%i", tweet.replyCount];
     cell.numRetweets.text = [NSString stringWithFormat:@"%i", tweet.retweetCount];
     cell.numLikes.text = [NSString stringWithFormat:@"%i", tweet.favoriteCount];

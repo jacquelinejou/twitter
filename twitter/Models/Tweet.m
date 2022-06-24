@@ -7,6 +7,7 @@
 //
 
 #import "Tweet.h"
+#import "UIKit/UIKit.h"
 
 @implementation Tweet
 
@@ -41,6 +42,8 @@
         // Configure the input format to parse the date string
         self.originalDate = [formatter dateFromString:createdAtOriginalString];
         self.createdAtString = [self.originalDate shortTimeAgoSinceNow];
+        self.mediaURL = [[NSString alloc] init];
+        self.mediaURL = dictionary[@"entities"][@"media"][0][@"media_url_https"];
     }
     return self;
 }

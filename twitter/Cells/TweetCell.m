@@ -60,7 +60,6 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -73,6 +72,12 @@
     self.numLikes.text = likes;
     NSString *retweets = [NSString stringWithFormat:@"%d", self.tweet.retweetCount];
     self.numRetweets.text = retweets;
+}
+
+-(void)prepareForReuse{
+    [super prepareForReuse];
+    self.tweetImage.image = nil;
+    // Then Reset here back to default values that you want.
 }
 
 @end
