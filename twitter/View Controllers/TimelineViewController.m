@@ -15,11 +15,14 @@
 #import "UIImageView+AFNetworking.h"
 #import "ComposeViewController.h"
 #import "TweetDetailsViewController.h"
+#import "InfiniteScrollActivityView.h"
 
-@interface TimelineViewController () <ComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>;
+@interface TimelineViewController () <ComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *arrayOfTweets;
+@property (assign, nonatomic) BOOL isMoreDataLoading;
+@property (nonatomic, strong) InfiniteScrollActivityView* loadingMoreView;
 
 @end
 
@@ -47,6 +50,17 @@
             [self.tableView reloadData];
         }
     }];
+    self.isMoreDataLoading = false;
+    
+    // Set up Infinite Scroll loading indicator
+    CGRect frame = CGRectMake(0, self.tableView.contentSize.height, self.tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight);
+    self.loadingMoreView = [[InfiniteScrollActivityView alloc] initWithFrame:frame];
+    self.loadingMoreView.hidden = true;
+    [self.tableView addSubview:self.loadingMoreView];
+    
+    UIEdgeInsets insets = self.tableView.contentInset;
+    insets.bottom += InfiniteScrollActivityView.defaultHeight;
+    self.tableView.contentInset = insets;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -132,10 +146,47 @@
     }
 }
 
-
 - (void)didTweet:(nonnull Tweet *)tweet {
     [self.arrayOfTweets insertObject:tweet atIndex:0];
     [self.tableView reloadData];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if(!self.isMoreDataLoading){
+        // Calculate the position of one screen length before the bottom of the results
+        int scrollViewContentHeight = self.tableView.contentSize.height;
+        int scrollOffsetThreshold = scrollViewContentHeight - self.tableView.bounds.size.height;
+        
+        // When the user has scrolled past the threshold, start requesting
+        if(scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging) {
+            self.isMoreDataLoading = true;
+            // Update position of loadingMoreView, and start loading indicator
+            CGRect frame = CGRectMake(0, self.tableView.contentSize.height, self.tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight);
+            self.loadingMoreView.frame = frame;
+            [self.loadingMoreView startAnimating];
+            [self loadMoreData:[self.arrayOfTweets count] + 20];
+        }
+    }
+}
+
+-(void)loadMoreData: (NSInteger)numReloadCells {
+    NSNumber *numReload = [NSNumber numberWithInteger:numReloadCells];
+    [[APIManager shared] reloadHomeTimeline:numReload completion:^(NSArray *tweets, NSError *error) {
+        self.isMoreDataLoading = NO;
+        if (tweets) {
+            self.arrayOfTweets = [tweets mutableCopy];
+            [self.tableView reloadData];
+        }
+        // Reload the tableView now that there is new data
+        [self.tableView reloadData];
+    }];
+}
+
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.row + 1 == [self.arrayOfTweets count]){
+        [self loadMoreData:[self.arrayOfTweets count] + 20];
+    }
 }
 
 @end

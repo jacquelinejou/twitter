@@ -13,7 +13,7 @@
 		2D5783112861391100F861FF /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5783102861391100F861FF /* TweetCell.m */; };
 		2D57831528626AF800F861FF /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D57831428626AF800F861FF /* ComposeViewController.m */; };
 		2D5783182863B93600F861FF /* TweetDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5783172863B93600F861FF /* TweetDetailsViewController.m */; };
-		2D57831A2864E31A00F861FF /* NSAttributedStringExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5783192864E31A00F861FF /* NSAttributedStringExtension.m */; };
+		2D57831D286533C700F861FF /* InfiniteScrollActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D57831C286533C700F861FF /* InfiniteScrollActivityView.m */; };
 		557D7B17F5D2B5715B705AA9 /* libPods-twitter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D6142D6F34C1AE98EE4951 /* libPods-twitter.a */; };
 		6AD278DA20BC4B950085BC29 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD278D920BC4B950085BC29 /* AppDelegate.m */; };
 		6AD278E020BC4B950085BC29 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AD278DE20BC4B950085BC29 /* Main.storyboard */; };
@@ -39,7 +39,8 @@
 		2D57831428626AF800F861FF /* ComposeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
 		2D5783162863B93600F861FF /* TweetDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TweetDetailsViewController.h; sourceTree = "<group>"; };
 		2D5783172863B93600F861FF /* TweetDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TweetDetailsViewController.m; sourceTree = "<group>"; };
-		2D5783192864E31A00F861FF /* NSAttributedStringExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSAttributedStringExtension.m; sourceTree = "<group>"; };
+		2D57831B286533C700F861FF /* InfiniteScrollActivityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfiniteScrollActivityView.h; sourceTree = "<group>"; };
+		2D57831C286533C700F861FF /* InfiniteScrollActivityView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfiniteScrollActivityView.m; sourceTree = "<group>"; };
 		43D6142D6F34C1AE98EE4951 /* libPods-twitter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-twitter.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AD278D520BC4B950085BC29 /* twitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = twitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AD278D820BC4B950085BC29 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -118,7 +119,6 @@
 				6AD278D820BC4B950085BC29 /* AppDelegate.h */,
 				6AD278D920BC4B950085BC29 /* AppDelegate.m */,
 				6AD278DE20BC4B950085BC29 /* Main.storyboard */,
-				2D5783192864E31A00F861FF /* NSAttributedStringExtension.m */,
 				2D5783032861125D00F861FF /* Keys.plist */,
 				6AD278E120BC4B970085BC29 /* Assets.xcassets */,
 				6AD278E320BC4B970085BC29 /* LaunchScreen.storyboard */,
@@ -164,6 +164,8 @@
 				6AD2790520BCC0380085BC29 /* LoginViewController.m */,
 				6AD2790720BCC04D0085BC29 /* TimelineViewController.h */,
 				6AD2790820BCC04D0085BC29 /* TimelineViewController.m */,
+				2D57831B286533C700F861FF /* InfiniteScrollActivityView.h */,
+				2D57831C286533C700F861FF /* InfiniteScrollActivityView.m */,
 				2D57831328626AF800F861FF /* ComposeViewController.h */,
 				2D57831428626AF800F861FF /* ComposeViewController.m */,
 				2D5783162863B93600F861FF /* TweetDetailsViewController.h */,
@@ -293,10 +295,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D5783112861391100F861FF /* TweetCell.m in Sources */,
-				2D57831A2864E31A00F861FF /* NSAttributedStringExtension.m in Sources */,
 				6AD278F320BCA6020085BC29 /* BDBOAuth1SessionManager+SFAuthenticationSession.m in Sources */,
 				2D578307286128E200F861FF /* User.m in Sources */,
 				2D5783182863B93600F861FF /* TweetDetailsViewController.m in Sources */,
+				2D57831D286533C700F861FF /* InfiniteScrollActivityView.m in Sources */,
 				2D57831528626AF800F861FF /* ComposeViewController.m in Sources */,
 				6AD278E820BC4B970085BC29 /* main.m in Sources */,
 				2D57830A286129C800F861FF /* Tweet.m in Sources */,

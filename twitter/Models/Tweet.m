@@ -41,10 +41,6 @@
         // Configure the input format to parse the date string
         self.originalDate = [formatter dateFromString:createdAtOriginalString];
         self.createdAtString = [self.originalDate shortTimeAgoSinceNow];
-        for (NSString * url in dictionary[@"entities"][@"urls"]) {
-            
-        }
-        self.embeddedURL = dictionary[@"entities"][@"urls"];
     }
     return self;
 }
