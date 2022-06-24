@@ -27,12 +27,12 @@ The following **stretch** features are implemented:
 
 - [x] Be able to **unlike** or **un-retweet** by tapping a liked or retweeted Tweet button, respectively. (Doing so will decrement the count for each)
 - [x] Click on links that appear in Tweets
-- [ ] See embedded media in Tweets that contain images or videos
+- [x] See embedded media in Tweets that contain images or videos
 - [ ] Reply to any Tweet (**2 points**)
   - Replies should be prefixed with the username
   - The `reply_id` should be set when posting the tweet
-- [ ] See a character count when composing a Tweet (as well as a warning) (280 characters) (**1 point**)
-- [ ] Load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client
+- [x] See a character count when composing a Tweet (as well as a warning) (280 characters) (**1 point**)
+- [x] Load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client
 - [ ] Click on a Profile image to reveal another user's profile page, including:
   - Header view: picture and tagline
   - Basic stats: #tweets, #following, #followers
@@ -52,8 +52,8 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='[http://i.imgur.com/link/to/your/gif/file.gif](https://github.com/jacquelinejou/twitter/blob/main/ezgif.com-gif-maker-2.gif)' title='Video Walkthrough Part 1' width='' alt='Video Walkthrough' />
-<img src='[http://i.imgur.com/link/to/your/gif/file.gif](https://github.com/jacquelinejou/twitter/blob/main/ezgif.com-gif-maker-3.gif)' title='Video Walkthrough Part 2' width='' alt='Video Walkthrough' />
+<img src='https://github.com/jacquelinejou/twitter/blob/main/ezgif.com-gif-maker-4.gif' title='Video Walkthrough Part 1' width='' alt='Video Walkthrough' />
+<img src='https://github.com/jacquelinejou/twitter/blob/main/ezgif.com-gif-maker-5.gif' title='Video Walkthrough Part 2' width='' alt='Video Walkthrough' />
 
 GIF created with [Kap](https://getkap.co/).
 
